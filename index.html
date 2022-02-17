@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Meme Generator</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="init()">
+    <h1>Image Gallery</h1>
+    <header class="main-header">
+        <div class="header-container main-layout flex space-between align-center">
+            <div class="logo">LOGO</div>
+            <nav class="main-nav">
+                <ul class="main-nav-container clean-list flex ">
+                    <li><a onclick="openGallery()" href="#">Gallery</a></li>
+                    <li><a onclick="btnMemes()" href="#">Memes</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-gallery main-layout">
+        <section class="search-input">
+            <input class="txt-gallery" type="text" placeholder="SEARCH" oninput="wordsSearch(this.value)">
+            <div class="words-search">
+                <div class="cat"> cat</div>
+                <div class="funny"> funny</div>
+                <div class="priorities"> priorities</div>
+                <div class="ironic"> ironic</div>
+            </div>
+        </section>
+        <div class="meme-gallery grid"></div>
+    </main>
+
+    <div class="meme-editor main-layout flex hide">
+        <div class="canvas"><canvas id="my-canvas" height="450" width="450" style="outline:1px solid red"></canvas> </div>
+        <div class="btns-edit">
+            <div class="area1">
+                <input class="txt-img" type="text" name="meme-text" placeholder="Text Line" oninput="onAddTxt(this.value)">
+            </div>
+            <div class="area2">
+                <img class="btn-edit" onclick="onSwitchLine()" src="img/icons/up-and-down-opposite-double-arrows-side-by-side.png" alt="">
+                <img class="btn-edit" onclick="onAddLine()" src="img/icons/add.png" alt="">
+                <img class="btn-clear" onclick="onClearLine()" src="img/icons/trash.png" alt="">
+            </div>
+            <div class="area3">
+                <img class="btn-edit" onclick="increaseSize ()" src="img/icons/increase font - icon.png" alt="">
+                <img class="btn-edit" onclick="decreaseSize()" src="img/icons/decrease font - icon.png" alt="">
+                <img class="btn-edit" onclick="alignToLeft()" src="img/icons/align-to-left.png" alt="">
+                <img class="btn-edit" onclick="alignToCenter()" src="img/icons/center-text-alignment.png" alt="">
+                <img class="btn-edit" onclick="alignToRight()" src="img/icons/align-to-right.png" alt="">
+
+            </div>
+            <div class="area4">
+                <input type="color" oninput="onChangeColor(this.value)"> <img class="btn-edit" src="img/icons/text stroke.png" alt="">
+                <input type="color" oninput="onChangeFillColor(this.value)"><img class="btn-edit" src="img/icons/paint-board-and-brush.png" alt="">
+                <select onchange="impactChange(this.value)">
+                    <option>Impact</option>
+                    <option></option>
+                    <option></option>
+                </select>
+            </div>
+            <div class="area5">
+                <button class="download"><a href="#" onclick="onDownloadMeme(this)">Download</a></button>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        ENJOY :)
+    </footer>
+
+    <script src="/js/meme-controller.js"></script>
+    <script src="/js/meme-service.js"></script>
+    <script src="/js/gallery-controller.js"></script>
+</body>
+
+</html>

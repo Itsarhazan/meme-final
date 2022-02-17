@@ -1,0 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(253, 213, 236);
+}
+
+h1 {
+    text-align: center;
+}

@@ -1,0 +1,41 @@
+.main-header {
+    background-color: greenyellow;
+    color: blue;
+    border: 2px black solid;
+    height: 40px;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.main-header .header-container {
+    height: 100%;
+}
+
+.header-container nav {
+    height: 100%;
+}
+
+.main-header .main-nav a {
+    display: flex;
+    height: 130px;
+    width: 130px;
+    justify-content: center;
+}
+
+
+/* .logo {
+    width: 200px;
+    height: 20px;
+    object-fit: inherit;
+    margin-bottom: 200px;
+} */
+
+.footer {
+    background-color: rgb(200, 82, 155);
+    height: 100px;
+    text-align: center;
+    font-size: xxx-large;
+    padding: 30px;
+    font-weight: bolder;
+    margin-top: 30px;
+}

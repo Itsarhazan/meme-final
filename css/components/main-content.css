@@ -1,0 +1,50 @@
+    .txt-gallery {
+        border: 3px blue solid;
+        margin-top: 20px;
+        text-align: center;
+        font-size: 20px;
+        width: 300px;
+    }
+    
+    canvas {
+        margin: 0;
+    }
+    
+    .txt-img {
+        border: 2px blue solid;
+        margin-top: 20px;
+        margin-left: 40px;
+        width: 300px;
+        height: 30px;
+        font-size: 20px;
+    }
+    
+    img {
+        width: 200px;
+        height: 200px;
+        margin-top: 30px;
+        margin: 5px;
+    }
+    
+    .meme-gallery {
+        width: 50px;
+        height: 50px;
+        display: inline;
+        cursor: pointer;
+    }
+    
+    .words-search {
+        font-size: 30px;
+        display: inline;
+        margin-left: 100px;
+        font-weight: bold;
+        font-style: oblique;
+    }
+    
+    .cat,
+    .funny,
+    .priorities,
+    .ironic {
+        display: inline;
+        margin: 10px;
+    }

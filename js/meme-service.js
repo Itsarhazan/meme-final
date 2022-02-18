@@ -1,6 +1,5 @@
 'use strict';
 
-var gTxtBox = [];
 
 var gImgs = [
     { id: 1, url: "./img/imgs/1.jpg", keywords: ['baby', 'funny'] },
@@ -34,6 +33,7 @@ var gMeme = {
             strokeColor: 'black',
             font: 'Ariel',
             location: { x: 80, y: 50 },
+            isDrag: false
         },
         {
             txt: '',
@@ -43,7 +43,7 @@ var gMeme = {
             strokeColor: 'black',
             font: 'Ariel',
             location: { x: 80, y: 200 },
-
+            isDrag: false
         },
         {
             txt: '',
@@ -53,44 +53,33 @@ var gMeme = {
             strokeColor: 'black',
             font: 'Ariel',
             location: { x: 80, y: 350 },
+            isDrag: false
         }
     ]
 }
 
-function getTxtBox(x, y) {
-    var widthBox = gCanvas.width;
-    return {
-        x,
-        y,
-        height: widthBox / 5,
-        width: widthBox - widthBox / 10,
-        isDrag: false,
-    };
-}
 
 function setLineTxt(memeTxt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = memeTxt;
 }
 
-function addTxtBox() {
-    var lineIdx = gMeme.lines[gMeme.selectedLineIdx];
-    var widthBox = gCanvas.width;
 
-    if (lineIdx === 0) {
-        gTxtBox.push(getTxtBox(widthBox / 20, widthBox / 20))
-        return gTxtBox;
-    }
-    if (lineIdx === 1) {
-        gTxtBox.push(getTxtBox(widthBox / 20, widthBox / 20))
-        return gTxtBox;
-
-    }
-    if (lineIdx === 2) {
-        gTxtBox.push(getTxtBox(widthBox / 20, widthBox / 20))
-        return gTxtBox;
-    }
-    renderCanvas()
-}
+// function addTxtBox() {
+//     if (gMeme.selectedLineIdx === 0) {
+//         gTxtBox.push(getTxtBox(80, 50))
+//             // console.log(gTxtBox);
+//         return gTxtBox;
+//     }
+//     if (gMeme.selectedLineIdx === 1) {
+//         gTxtBox.push(getTxtBox(80, 200))
+//         return gTxtBox;
+//     }
+//     if (gMeme.selectedLineIdx === 2) {
+//         gTxtBox.push(getTxtBox(80, 350))
+//         return gTxtBox;
+//     }
+//     // renderCanvas()
+// }
 
 
 

@@ -12,19 +12,29 @@ function init() {
     gCanvas = document.getElementById('my-canvas');
     gCtx = gCanvas.getContext('2d');
     renderGallery();
+    const center = { x: gCanvas.width - 400, y: gCanvas.height - 370 }
+    createBox(center)
+
     addMouseListeners();
     // addListeners()
 }
 
 function renderMeme(id) {
     gMeme.selectedImgId = id;
+    renderBox()
     renderCanvas()
+}
+
+function renderBox() {
+    const { pos, color, size } = getTxtBox()
+    drawArc(pos.y, pos.x, size, color)
 }
 
 function renderCanvas(id) {
     id = gMeme.selectedImgId;
     var img = document.querySelector(`.img-${id}`)
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
+
     var elTxt = document.querySelector('.txt-img')
     if (elTxt.value)
         elTxt.value = gMeme.lines[gMeme.selectedLineIdx].txt;
@@ -42,7 +52,6 @@ function btnImg(id) {
 
 function onAddTxt(txt) {
     setLineTxt(txt);
-    addTxtBox();
     renderCanvas();
 }
 
@@ -53,6 +62,16 @@ function drawText(line) {
     gCtx.font = `${line.size}px ${line.font}`;;
     gCtx.fillText(line.txt, line.location.x, line.location.y);
     gCtx.strokeText(line.txt, line.location.x, line.location.y);
+}
+
+function drawArc(y, x, size = 50, color = 'blue') {
+    gCtx.beginPath()
+    gCtx.lineWidth = '20'
+    gCtx.arc(y, y, size, x, x)
+    gCtx.strokeStyle = 'blue'
+    gCtx.stroke()
+    gCtx.fillStyle = color
+    gCtx.fill()
 }
 
 function onAddLine() {
@@ -143,16 +162,6 @@ function wordsSearch(word) {
     }
 }
 
-// function addListeners() {
-//     addMouseListeners()
-//         // resizeCanvas()
-//     renderCanvas()
-//         // addTouchListeners()
-//         // window.addEventListener('resize', () => {
-//         //     resizeCanvas()
-//         // })
-// }
-
 
 function addMouseListeners() {
     gCanvas.addEventListener('mousemove', onMove)
@@ -160,38 +169,13 @@ function addMouseListeners() {
     gCanvas.addEventListener('mouseup', onUp)
 }
 
-function getTxt() {
-    gTxt = gMeme.lines[gMeme.selectedLineIdx].location;
-    return gTxt;
-}
-
-function setTxtDrag(isDrag) {
-    gTxt.isDrag = isDrag
-}
-
-function moveTxt(dx, dy) {
-    gTxt.pos.x += dx
-    gTxt.pos.y += dy
-
-}
-
-function isTxtClicked(clickedPos) {
-    var lineIdx;
-    gTxtBox.forEach((txtBox, idx) => {
-        if (txtBox.x <= clickedPos.x && clickedPos.x - txtBox.x <= txtBox.width) {
-            if (txtBox.y <= clickedPos.y && clickedPos.y - txtBox.y <= txtBox.height)
-                lineIdx = idx;
-        }
-    });
-    return lineIdx;
-}
 
 function onDown(ev) {
     const pos = getEvPos(ev);
     console.log('onDown()');
 
-    if (!isTxtClicked(pos) || isTxtClicked.length === 0) return;
-    setTxtDrag(true);
+    if (!isBoxClicked(pos)) return;
+    setBoxDrag(true);
     gStartPos = pos;
     document.body.style.cursor = 'grabbing';
     // renderCanvas();
@@ -200,12 +184,12 @@ function onDown(ev) {
 
 function onMove(ev) {
     console.log('onMove()');
-    const txt = getTxt();
+    const txt = getTxtBox();
     if (txt.isDrag) {
         const pos = getEvPos(ev)
-        const dx = pos.x - gStartPos.x
-        const dy = pos.y - gStartPos.y
-        moveTxt(dx, dy);
+        const dx = poss.x - gStartPos.x
+        const dy = po.y - gStartPos.y
+        moveBox(dx, dy);
         gStartPos = pos;
         renderCanvas()
     }
@@ -214,7 +198,7 @@ function onMove(ev) {
 function onUp() {
     console.log('onUp()');
 
-    setTxtDrag(false)
+    setBoxDrag(false)
     document.body.style.cursor = 'grab'
 
 }

@@ -5,12 +5,15 @@ var gCtx;
 var gInputTxt;
 var gPageEditor = document.querySelector('.meme-editor')
 var gElImgs = document.querySelector('.meme-gallery')
-
+var gTxt;
+var gStartPos;
 
 function init() {
     gCanvas = document.getElementById('my-canvas');
     gCtx = gCanvas.getContext('2d');
     renderGallery();
+    addMouseListeners();
+    // addListeners()
 }
 
 function renderMeme(id) {
@@ -38,8 +41,9 @@ function btnImg(id) {
 }
 
 function onAddTxt(txt) {
-    setLineTxt(txt)
-    renderCanvas()
+    setLineTxt(txt);
+    addTxtBox();
+    renderCanvas();
 }
 
 function drawText(line) {
@@ -56,6 +60,7 @@ function onAddLine() {
     if (gMeme.selectedLineIdx === 0 || gMeme.selectedLineIdx === 1)
         gMeme.selectedLineIdx++
         else gMeme.selectedLineIdx = 0;
+
 }
 
 function onClearLine() {
@@ -64,14 +69,16 @@ function onClearLine() {
 }
 
 function onSwitchLine() {
-    console.log('hii');
+
     if (gMeme.selectedLineIdx === 0) {
         gMeme.lines[2].txt = gMeme.lines[gMeme.selectedLineIdx].txt;
         gMeme.lines[0].txt = '';
+
     }
     if (gMeme.selectedLineIdx === 2) {
         gMeme.lines[0].txt = gMeme.lines[gMeme.selectedLineIdx].txt;
         gMeme.lines[2].txt = '';
+        gMeme.selectedLineIdx = 0;
     }
     renderCanvas();
 }
@@ -114,10 +121,114 @@ function alignToRight() {
 
 function wordsSearch(word) {
 
-    if (word === 'cat')
-        document.querySelector('.cat').style.size = '50' + 'px'
-    if (word === 'funny') funny++
-        if (word === 'priorities') priorities++
-            if (word === 'ironic') ironic++
+    if (word === 'cat') {
+        var elCat = document.querySelector('.cat')
+        elCat.style.fontSize = '40' + 'px';
+        elCat.style.color = 'blue';
+    }
+    if (word === 'funny') {
+        var elFunny = document.querySelector('.funny')
+        elFunny.style.fontSize = '40' + 'px';
+        elFunny.style.color = 'blue';
+    }
+    if (word === 'priorities') {
+        var elPriorities = document.querySelector('.priorities')
+        elPriorities.style.fontSize = '40' + 'px';
+        elPriorities.style.color = 'blue';
+    }
+    if (word === 'ironic') {
+        var elIronic = document.querySelector('.ironic')
+        elIronic.style.fontSize = '40' + 'px';
+        elIronic.style.color = 'blue';
+    }
+}
 
+// function addListeners() {
+//     addMouseListeners()
+//         // resizeCanvas()
+//     renderCanvas()
+//         // addTouchListeners()
+//         // window.addEventListener('resize', () => {
+//         //     resizeCanvas()
+//         // })
+// }
+
+
+function addMouseListeners() {
+    gCanvas.addEventListener('mousemove', onMove)
+    gCanvas.addEventListener('mousedown', onDown)
+    gCanvas.addEventListener('mouseup', onUp)
+}
+
+function getTxt() {
+    gTxt = gMeme.lines[gMeme.selectedLineIdx].location;
+    return gTxt;
+}
+
+function setTxtDrag(isDrag) {
+    gTxt.isDrag = isDrag
+}
+
+function moveTxt(dx, dy) {
+    gTxt.pos.x += dx
+    gTxt.pos.y += dy
+
+}
+
+function isTxtClicked(clickedPos) {
+    var lineIdx;
+    gTxtBox.forEach((txtBox, idx) => {
+        if (txtBox.x <= clickedPos.x && clickedPos.x - txtBox.x <= txtBox.width) {
+            if (txtBox.y <= clickedPos.y && clickedPos.y - txtBox.y <= txtBox.height)
+                lineIdx = idx;
+        }
+    });
+    return lineIdx;
+}
+
+function onDown(ev) {
+    const pos = getEvPos(ev);
+    console.log('onDown()');
+
+    if (!isTxtClicked(pos) || isTxtClicked.length === 0) return;
+    setTxtDrag(true);
+    gStartPos = pos;
+    document.body.style.cursor = 'grabbing';
+    // renderCanvas();
+}
+
+
+function onMove(ev) {
+    console.log('onMove()');
+    const txt = getTxt();
+    if (txt.isDrag) {
+        const pos = getEvPos(ev)
+        const dx = pos.x - gStartPos.x
+        const dy = pos.y - gStartPos.y
+        moveTxt(dx, dy);
+        gStartPos = pos;
+        renderCanvas()
+    }
+}
+
+function onUp() {
+    console.log('onUp()');
+
+    setTxtDrag(false)
+    document.body.style.cursor = 'grab'
+
+}
+
+// function resizeCanvas() {
+//     const elContainer = document.querySelector('.canvas')
+//     gCanvas.width = elContainer.offsetWidth
+//     gCanvas.height = elContainer.offsetHeight
+// }
+
+function getEvPos(ev) {
+    var pos = {
+        x: ev.offsetX,
+        y: ev.offsetY
+    }
+    return pos
 }

@@ -94,18 +94,18 @@ function onSwitchLine(pos) {
 
         gMeme.lines[1].txt = gMeme.lines[0].txt;
         gMeme.lines[0].txt = '';
-        gMeme.selectedLineIdx = 1;
+        pos = 1;
     }
     if (pos === 1) {
 
         gMeme.lines[2].txt = gMeme.lines[1].txt;
         gMeme.lines[1].txt = '';
-        gMeme.selectedLineIdx = 2;
+        pos = 2;
     }
     if (pos === 2) {
         gMeme.lines[0].txt = gMeme.lines[2].txt;
         gMeme.lines[2].txt = '';
-        gMeme.selectedLineIdx = 0;
+        pos = 0;
 
     }
     renderCanvas();

@@ -88,6 +88,7 @@ function onClearLine() {
     renderCanvas()
 }
 
+
 function onSwitchLine(pos) {
     pos = gMeme.selectedLineIdx
     if (pos === 0) {

@@ -88,17 +88,25 @@ function onClearLine() {
     renderCanvas()
 }
 
-function onSwitchLine() {
+function onSwitchLine(pos) {
+    pos = gMeme.selectedLineIdx
+    if (pos === 0) {
 
-    if (gMeme.selectedLineIdx === 0) {
-        gMeme.lines[2].txt = gMeme.lines[gMeme.selectedLineIdx].txt;
+        gMeme.lines[1].txt = gMeme.lines[0].txt;
         gMeme.lines[0].txt = '';
-
+        gMeme.selectedLineIdx = 1;
     }
-    if (gMeme.selectedLineIdx === 2) {
-        gMeme.lines[0].txt = gMeme.lines[gMeme.selectedLineIdx].txt;
+    if (pos === 1) {
+
+        gMeme.lines[2].txt = gMeme.lines[1].txt;
+        gMeme.lines[1].txt = '';
+        gMeme.selectedLineIdx = 2;
+    }
+    if (pos === 2) {
+        gMeme.lines[0].txt = gMeme.lines[2].txt;
         gMeme.lines[2].txt = '';
         gMeme.selectedLineIdx = 0;
+
     }
     renderCanvas();
 }

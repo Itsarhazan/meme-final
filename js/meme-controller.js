@@ -88,25 +88,24 @@ function onClearLine() {
     renderCanvas()
 }
 
-
 function onSwitchLine(pos) {
     pos = gMeme.selectedLineIdx
     if (pos === 0) {
 
         gMeme.lines[1].txt = gMeme.lines[0].txt;
         gMeme.lines[0].txt = '';
-        pos = 1;
+        gMeme.selectedLineIdx = 1;
     }
     if (pos === 1) {
 
         gMeme.lines[2].txt = gMeme.lines[1].txt;
         gMeme.lines[1].txt = '';
-        pos = 2;
+        gMeme.selectedLineIdx = 2;
     }
     if (pos === 2) {
         gMeme.lines[0].txt = gMeme.lines[2].txt;
         gMeme.lines[2].txt = '';
-        pos = 0;
+        gMeme.selectedLineIdx = 0;
 
     }
     renderCanvas();

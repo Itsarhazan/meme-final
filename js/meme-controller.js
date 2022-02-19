@@ -21,14 +21,14 @@ function init() {
 
 function renderMeme(id) {
     gMeme.selectedImgId = id;
-    renderBox()
+    // renderBox()
     renderCanvas()
 }
 
-function renderBox() {
-    const { pos, color, size } = getTxtBox()
-    drawArc(pos.y, pos.x, size, color)
-}
+// function renderBox() {
+//     const { pos, color, size } = getTxtBox()
+//     drawArc(pos.x, pos.y, size, color)
+// }
 
 function renderCanvas(id) {
     id = gMeme.selectedImgId;
@@ -48,6 +48,7 @@ function btnImg(id) {
     gMeme.selectedImgId = id;
     document.querySelector('.main-gallery').classList.add('hide');
     document.querySelector('.meme-editor').classList.remove('hide');
+
 }
 
 function onAddTxt(txt) {
@@ -64,15 +65,15 @@ function drawText(line) {
     gCtx.strokeText(line.txt, line.location.x, line.location.y);
 }
 
-function drawArc(y, x, size = 50, color = 'blue') {
-    gCtx.beginPath()
-    gCtx.lineWidth = '20'
-    gCtx.arc(y, y, size, x, x)
-    gCtx.strokeStyle = 'blue'
-    gCtx.stroke()
-    gCtx.fillStyle = color
-    gCtx.fill()
-}
+// function drawArc(x, y, width, height) {
+//     gCtx.beginPath()
+//     gCtx.lineWidth = '20'
+//     gCtx.arc(x, y, width, height)
+//     gCtx.strokeStyle = 'blue'
+//     gCtx.stroke()
+//     gCtx.fillStyle = 'red'
+//     gCtx.fill()
+// }
 
 function onAddLine() {
 
@@ -110,6 +111,10 @@ function onChangeColor(color) {
 function onChangeFillColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].fillColor = color;
     renderCanvas()
+}
+
+function onChangeFont(font) {
+    gMeme.lines[gMeme.selectedLineIdx].font = font;
 }
 
 function increaseSize() {
@@ -215,4 +220,22 @@ function getEvPos(ev) {
         y: ev.offsetY
     }
     return pos
+}
+
+function doTrans() {
+    var els = document.querySelectorAll('[data-trans]')
+    els.forEach((el) => {
+        var transKey = el.dataset.trans
+        var txt = getTrans(transKey)
+        if (el.nodeName === 'INPUT') {
+            el.placeholder = txt
+        } else el.innerText = txt
+    })
+}
+
+function onSetLang(lang) {
+    setLang(lang);
+    if (lang === 'he') document.body.classList.add('rtl');
+    else document.body.classList.remove('rtl');
+    doTrans();
 }

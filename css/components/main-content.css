@@ -10,10 +10,6 @@
         margin: 0;
     }
     
-    .canvas {
-        background-color: aqua;
-    }
-    
     .txt-img {
         border: 2px blue solid;
         margin-top: 20px;

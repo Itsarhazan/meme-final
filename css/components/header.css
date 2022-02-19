@@ -22,13 +22,34 @@
     justify-content: center;
 }
 
+.logo {
+    font-size: 40px;
+}
 
-/* .logo {
-    width: 200px;
-    height: 20px;
-    object-fit: inherit;
-    margin-bottom: 200px;
-} */
+.logo .i {
+    color: blue;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.logo .t {
+    color: rgb(250, 157, 8);
+    font-family: italic;
+}
+
+.logo .s {
+    color: rgb(228, 0, 171);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.logo .a {
+    color: rgb(246, 52, 4);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.logo .r {
+    color: rgb(6, 189, 202);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 
 .footer {
     background-color: rgb(200, 82, 155);

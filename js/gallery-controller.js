@@ -13,6 +13,8 @@ function renderGallery() {
 function openGallery() {
     document.querySelector('.main-gallery').classList.remove('hide');
     document.querySelector('.meme-editor').classList.add('hide');
+    document.querySelector('.btn-share').classList.add('hide');
+
 
 }
 

@@ -1,0 +1,14 @@
+@font-face {
+    font-family: lato;
+    src: url(/fonts/Lato-Regular.ttf);
+}
+
+@font-face {
+    font-family: prompt;
+    src: url(/fonts/Prompt-Regular.ttf);
+}
+
+@font-face {
+    font-family: itali;
+    src: url(/fonts/RobotoSerif-Italic-VariableFont_GRAD\,opsz\,wdth\,wght.ttf);
+}

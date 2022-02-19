@@ -1,5 +1,19 @@
-/* @media screen and (max-width: 500px) {
-    .canvas {
-        width: 80vw;
+@media (max-width: 800px) {
+    .meme-editor {
+        flex-direction: column;
     }
-} */
+    .main-layout {
+        max-width: 600px;
+    }
+}
+
+@media (max-width:500px) {
+    .btns-edit {
+        justify-content: center;
+        gap: 10px;
+    }
+    .main-header ul {
+        position: fixed;
+        flex-direction: column;
+    }
+}

@@ -11,14 +11,22 @@
 
 <body onload="init()">
     <h1>Image Gallery</h1>
+    <div class="btn-lang">
+        <select onchange="onSetLang(this.value)">
+            <option value="en">English</option>
+            <option value="he">עברית</option>
+        </select>
+    </div>
     <header class="main-header">
         <div class="header-container main-layout flex space-between align-center">
-            <div class="logo">LOGO</div>
+            <div class="logo" data-trans="itsar">
+                <span class="i">I</span><span class="t">T</span><span class="s">S</span><span class="a">A</span><span class="r">R</span>
+            </div>
             <nav class="main-nav">
                 <ul class="main-nav-container clean-list flex ">
-                    <li><a onclick="openGallery()" href="#">Gallery</a></li>
-                    <li><a onclick="btnMemes()" href="#">Memes</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a data-trans="gallery" onclick="openGallery()" href="#">Gallery</a></li>
+                    <li><a data-trans="memes" onclick="btnMemes()" href="#">Memes</a></li>
+                    <li><a data-trans="about" href="#">About</a></li>
                 </ul>
             </nav>
         </div>
@@ -26,12 +34,12 @@
 
     <main class="main-gallery main-layout">
         <section class="search-input">
-            <input class="txt-gallery" type="text" placeholder="SEARCH" oninput="wordsSearch(this.value)">
+            <input class="txt-gallery" type="text" data-trans="search" placeholder="SEARCH" oninput="wordsSearch(this.value)">
             <div class="words-search">
-                <div class="cat"> cat</div>
-                <div class="funny"> funny</div>
-                <div class="priorities"> priorities</div>
-                <div class="ironic"> ironic</div>
+                <div class="cat" data-trans="cat"> cat</div>
+                <div class="funny" data-trans="funny"> funny</div>
+                <div class="priorities" data-trans="priorities"> priorities</div>
+                <div class="ironic" data-trans="ironic"> ironic</div>
             </div>
         </section>
         <div class="meme-gallery grid"></div>
@@ -57,27 +65,32 @@
 
             </div>
             <div class="area4">
-                <input type="color" oninput="onChangeColor(this.value)"> <img class="btn-edit" src="./img/icons/text stroke.png" alt="">
                 <input type="color" oninput="onChangeFillColor(this.value)"><img class="btn-edit" src="./img/icons/paint-board-and-brush.png" alt="">
-                <select onchange="impactChange(this.value)">
-                    <option>Impact</option>
-                    <option></option>
-                    <option></option>
+                <input type="color" oninput="onChangeColor(this.value)"> <img class="btn-edit" src="./img/icons/text stroke.png" alt="">
+                <select onchange="onChangeFont(this.value)">
+                    <option class="ariel">Ariel</option>
+                    <option class="lato">Lato</option>
+                    <option class="prompt">Prompt</option>
+                    <option class="itali">Italic</option>
                 </select>
             </div>
-            <div class="area5">
-                <button class="download"><a href="#" onclick="onDownloadMeme(this)">Download</a></button>
+            <div class="area5 flex">
+                <button class="download-btn"><a data-trans="upload" href="#" onclick="uploadImg(this)">Upload</a></button>
+                <button class="download-btn btn-share hide" data-trans="share"></button>
+                <button class="download-btn"><a href="#" data-trans="download" onclick="onDownloadMeme(this)">Download</a></button>
             </div>
         </div>
     </div>
-    <footer class="footer">
+    <footer class="footer" data-trans="footer">
         ENJOY :)
     </footer>
 
     <script src="js/meme-controller.js"></script>
     <script src="js/meme-service.js"></script>
+    <script src="js/lang-service.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/main.js"></script>
+
 </body>
 
 </html>

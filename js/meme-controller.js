@@ -12,9 +12,6 @@ function init() {
     gCanvas = document.getElementById('my-canvas');
     gCtx = gCanvas.getContext('2d');
     renderGallery();
-    const center = { x: gCanvas.width - 400, y: gCanvas.height - 370 }
-    createBox(center)
-
     addMouseListeners();
     // addListeners()
 }
@@ -122,6 +119,7 @@ function onChangeFillColor(color) {
 }
 
 function onChangeFont(font) {
+    // if (font)
     gMeme.lines[gMeme.selectedLineIdx].font = font;
 }
 
@@ -182,39 +180,50 @@ function addMouseListeners() {
     gCanvas.addEventListener('mouseup', onUp)
 }
 
+function onMove() {
 
-function onDown(ev) {
-    const pos = getEvPos(ev);
-    console.log('onDown()');
-
-    if (!isBoxClicked(pos)) return;
-    setBoxDrag(true);
-    gStartPos = pos;
-    document.body.style.cursor = 'grabbing';
-    // renderCanvas();
 }
 
+function onDown() {
 
-function onMove(ev) {
-    console.log('onMove()');
-    const txt = getTxtBox();
-    if (txt.isDrag) {
-        const pos = getEvPos(ev)
-        const dx = poss.x - gStartPos.x
-        const dy = po.y - gStartPos.y
-        moveBox(dx, dy);
-        gStartPos = pos;
-        renderCanvas()
-    }
 }
 
 function onUp() {
-    console.log('onUp()');
-
-    setBoxDrag(false)
-    document.body.style.cursor = 'grab'
 
 }
+
+// function onDown(ev) {
+//     const pos = getEvPos(ev);
+//     console.log('onDown()');
+
+//     if (!isBoxClicked(pos)) return;
+//     setBoxDrag(true);
+//     gStartPos = pos;
+//     document.body.style.cursor = 'grabbing';
+//     // renderCanvas();
+// }
+
+
+// function onMove(ev) {
+//     console.log('onMove()');
+//     const txt = getTxtBox();
+//     if (txt.isDrag) {
+//         const pos = getEvPos(ev)
+//         const dx = poss.x - gStartPos.x
+//         const dy = po.y - gStartPos.y
+//         moveBox(dx, dy);
+//         gStartPos = pos;
+//         renderCanvas()
+//     }
+// }
+
+// function onUp() {
+//     console.log('onUp()');
+
+//     setBoxDrag(false)
+//     document.body.style.cursor = 'grab'
+
+// }
 
 // function resizeCanvas() {
 //     const elContainer = document.querySelector('.canvas')
@@ -222,13 +231,13 @@ function onUp() {
 //     gCanvas.height = elContainer.offsetHeight
 // }
 
-function getEvPos(ev) {
-    var pos = {
-        x: ev.offsetX,
-        y: ev.offsetY
-    }
-    return pos
-}
+// function getEvPos(ev) {
+//     var pos = {
+//         x: ev.offsetX,
+//         y: ev.offsetY
+//     }
+//     return pos
+// }
 
 function doTrans() {
     var els = document.querySelectorAll('[data-trans]')

@@ -34,12 +34,12 @@
 
     <main class="main-gallery main-layout">
         <section class="search-input">
-            <input class="txt-gallery" type="text" data-trans="search" placeholder="SEARCH" oninput="wordsSearch(this.value)">
+            <input class="txt-gallery" type="text" data-trans="search" placeholder="SEARCH" oninput="onFilter(this.value)">
             <div class="words-search">
-                <div class="cat" data-trans="cat"> cat</div>
-                <div class="funny" data-trans="funny"> funny</div>
-                <div class="priorities" data-trans="priorities"> priorities</div>
-                <div class="ironic" data-trans="ironic"> ironic</div>
+                <div class="cat" data-trans="cat" onclick="onFilter('cat')"> cat</div>
+                <div class="funny" data-trans="funny" onclick="onFilter('funny')"> funny</div>
+                <div class="priorities" data-trans="priorities" onclick="onFilter('priorities')"> priorities</div>
+                <div class="ironic" data-trans="ironic" onclick="onFilter('ironic')"> ironic</div>
             </div>
         </section>
         <div class="meme-gallery grid"></div>
@@ -89,7 +89,7 @@
     <script src="js/meme-service.js"></script>
     <script src="js/lang-service.js"></script>
     <script src="js/gallery-controller.js"></script>
-    <script src="js/main.js"></script>
+
 
 </body>
 

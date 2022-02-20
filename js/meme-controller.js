@@ -8,24 +8,23 @@ var gElImgs = document.querySelector('.meme-gallery')
 var gTxt;
 var gStartPos;
 
+
 function init() {
     gCanvas = document.getElementById('my-canvas');
     gCtx = gCanvas.getContext('2d');
     renderGallery();
     addMouseListeners();
-    // addListeners()
 }
 
 function renderMeme(id) {
     gMeme.selectedImgId = id;
-    // renderBox()
     renderCanvas()
 }
 
-// function renderBox() {
-//     const { pos, color, size } = getTxtBox()
-//     drawArc(pos.x, pos.y, size, color)
-// }
+function onFilter(txt) {
+    setFilterBy(txt)
+    renderGallery()
+}
 
 function renderCanvas(id) {
     id = gMeme.selectedImgId;
@@ -45,7 +44,6 @@ function btnImg(id) {
     gMeme.selectedImgId = id;
     document.querySelector('.main-gallery').classList.add('hide');
     document.querySelector('.meme-editor').classList.remove('hide');
-
 }
 
 function onAddTxt(txt) {
@@ -61,16 +59,6 @@ function drawText(line) {
     gCtx.fillText(line.txt, line.location.x, line.location.y);
     gCtx.strokeText(line.txt, line.location.x, line.location.y);
 }
-
-// function drawArc(x, y, width, height) {
-//     gCtx.beginPath()
-//     gCtx.lineWidth = '20'
-//     gCtx.arc(x, y, width, height)
-//     gCtx.strokeStyle = 'blue'
-//     gCtx.stroke()
-//     gCtx.fillStyle = 'red'
-//     gCtx.fill()
-// }
 
 function onAddLine() {
 
@@ -119,7 +107,6 @@ function onChangeFillColor(color) {
 }
 
 function onChangeFont(font) {
-    // if (font)
     gMeme.lines[gMeme.selectedLineIdx].font = font;
 }
 
@@ -148,12 +135,18 @@ function alignToRight() {
     renderCanvas()
 }
 
+function onDownloadMeme(downLodeMeme) {
+    downloadMeme(downLodeMeme);
+}
 
-function wordsSearch(word) {
+function onFilter(word) {
 
     if (word === 'cat') {
         var elCat = document.querySelector('.cat')
-        elCat.style.fontSize = '40' + 'px';
+        var size = parseInt(elCat.style.fontSize)
+        console.log(elCat.style.fontSize);
+        elCat.style.fontSize = (size++) + 'px';
+        console.log(parseInt(elCat.style.fontSize));
         elCat.style.color = 'blue';
     }
     if (word === 'funny') {
@@ -173,71 +166,43 @@ function wordsSearch(word) {
     }
 }
 
-
 function addMouseListeners() {
     gCanvas.addEventListener('mousemove', onMove)
     gCanvas.addEventListener('mousedown', onDown)
     gCanvas.addEventListener('mouseup', onUp)
 }
 
-function onMove() {
+function onDown(ev) {
+    const pos = getEvPos(ev);
+    console.log('onDown()');
 
+    if (!isTxtClicked(pos)) return;
+    setBoxDrag(true);
+    gStartPos = pos;
+    document.body.style.cursor = 'grabbing';
+    renderCanvas();
 }
 
-function onDown() {
-
+function onMove(ev) {
+    console.log('onMove()');
+    const txt = getTxtBox();
+    if (txt.isDrag) {
+        const pos = getEvPos(ev)
+        const dx = pos.x - gStartPos.x
+        const dy = pos.y - gStartPos.y
+        moveTxtBox(dx, dy);
+        gStartPos = pos;
+        renderCanvas()
+    }
 }
 
 function onUp() {
+    console.log('onUp()');
+
+    setBoxDrag(false)
+    document.body.style.cursor = 'grab'
 
 }
-
-// function onDown(ev) {
-//     const pos = getEvPos(ev);
-//     console.log('onDown()');
-
-//     if (!isBoxClicked(pos)) return;
-//     setBoxDrag(true);
-//     gStartPos = pos;
-//     document.body.style.cursor = 'grabbing';
-//     // renderCanvas();
-// }
-
-
-// function onMove(ev) {
-//     console.log('onMove()');
-//     const txt = getTxtBox();
-//     if (txt.isDrag) {
-//         const pos = getEvPos(ev)
-//         const dx = poss.x - gStartPos.x
-//         const dy = po.y - gStartPos.y
-//         moveBox(dx, dy);
-//         gStartPos = pos;
-//         renderCanvas()
-//     }
-// }
-
-// function onUp() {
-//     console.log('onUp()');
-
-//     setBoxDrag(false)
-//     document.body.style.cursor = 'grab'
-
-// }
-
-// function resizeCanvas() {
-//     const elContainer = document.querySelector('.canvas')
-//     gCanvas.width = elContainer.offsetWidth
-//     gCanvas.height = elContainer.offsetHeight
-// }
-
-// function getEvPos(ev) {
-//     var pos = {
-//         x: ev.offsetX,
-//         y: ev.offsetY
-//     }
-//     return pos
-// }
 
 function doTrans() {
     var els = document.querySelectorAll('[data-trans]')

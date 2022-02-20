@@ -21,6 +21,7 @@ var gImgs = [
     { id: 17, url: "./img/imgs/17.jpg", keywords: ['priorities', 'cat', 'funny'] },
     { id: 18, url: "./img/imgs/18.jpg", keywords: ['priorities', 'cat', 'funny'] },
 ];
+var gFilterBy = ''
 
 var gMeme = {
     selectedImgId: 0,
@@ -59,27 +60,55 @@ var gMeme = {
 }
 
 
+
+function setFilterBy(txt) {
+    gFilterBy = txt
+}
+
 function setLineTxt(memeTxt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = memeTxt;
 }
 
 
-// function addTxtBox() {
-//     if (gMeme.selectedLineIdx === 0) {
-//         gTxtBox.push(getTxtBox(80, 50))
-//             // console.log(gTxtBox);
-//         return gTxtBox;
-//     }
-//     if (gMeme.selectedLineIdx === 1) {
-//         gTxtBox.push(getTxtBox(80, 200))
-//         return gTxtBox;
-//     }
-//     if (gMeme.selectedLineIdx === 2) {
-//         gTxtBox.push(getTxtBox(80, 350))
-//         return gTxtBox;
-//     }
-//     // renderCanvas()
-// }
+function getTxtBox() {
+    return gMeme.lines[gMeme.selectedLineIdx];
+}
+
+function isTxtClicked(txtPos) {
+    var res
+    gMeme.lines.forEach((line, idx) => {
+        const pos = line.location;
+        var text = line.txt;
+        const distance = gCtx.measureText(text);
+        var distanceTxt = distance.width;
+        var sizeTxt = line.size;
+        // gMeme.lines[gMeme.selectedLineIdx]
+        if (txtPos.x <= (distanceTxt + pos.x) && txtPos.x >= pos.x && txtPos.y <= pos.y && txtPos.y >= (pos.y - (sizeTxt / 2))) {
+            gMeme.selectedLineIdx = idx
+            res = (txtPos.x <= (distanceTxt + pos.x) && txtPos.x >= pos.x && txtPos.y <= pos.y && txtPos.y >= (pos.y - (sizeTxt / 2)));
+        }
+
+    })
+    return res;
+
+}
+
+function getEvPos(ev) {
+    var pos = {
+        x: ev.offsetX,
+        y: ev.offsetY
+    }
+    return pos
+}
+
+function setBoxDrag(isDrag) {
+    gMeme.lines[gMeme.selectedLineIdx].isDrag = isDrag
+}
+
+function moveTxtBox(dx, dy) {
+    gMeme.lines[gMeme.selectedLineIdx].location.x += dx
+    gMeme.lines[gMeme.selectedLineIdx].location.y += dy
+}
 
 
 
@@ -99,13 +128,12 @@ function getMeme() {
 }
 
 function getImgs() {
-    return gImgs;
-
+    if (!gFilterBy) return gImgs;
+    return gImgs.filter(img => {
+        return img.keywords.includes(gFilterBy)
+    })
 }
 
-function onDownloadMeme(downLodeMeme) {
-    downloadMeme(downLodeMeme);
-}
 
 function downloadMeme(elLink) {
     const data = gCanvas.toDataURL();

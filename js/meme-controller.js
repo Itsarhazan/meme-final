@@ -2,12 +2,10 @@
 
 var gCanvas;
 var gCtx;
-var gInputTxt;
-var gPageEditor = document.querySelector('.meme-editor')
-var gElImgs = document.querySelector('.meme-gallery')
-var gTxt;
+// var gInputTxt;
+// var gPageEditor = document.querySelector('.meme-editor')
+// var gElImgs = document.querySelector('.meme-gallery')
 var gStartPos;
-
 
 function init() {
     gCanvas = document.getElementById('my-canvas');
@@ -21,8 +19,43 @@ function renderMeme(id) {
     renderCanvas()
 }
 
-function onSearchByFilter(txt) {
-    setFilterBy(txt)
+function onSearchByFilter(word) {
+    setFilterBy(word)
+
+    if (word === 'all') {
+        var elFunny = document.querySelector('.all')
+        elFunny.style.fontSize = '25' + 'px';
+        elFunny.style.color = 'red';
+    }
+    if (word === 'political') {
+        var elFunny = document.querySelector('.political')
+        elFunny.style.fontSize = '22' + 'px';
+        elFunny.style.color = 'red';
+    }
+    if (word === 'funny') {
+        var elFunny = document.querySelector('.funny');
+        elFunny.style.fontSize = '22' + 'px';
+        var a = parseInt(elFunny.style.fontSize)
+        console.log(a);
+        a += 10;
+        console.log(a);
+        elFunny.style.color = 'red';
+    }
+    if (word === 'priorities') {
+        var elFunny = document.querySelector('.priorities')
+        elFunny.style.fontSize = '22' + 'px';
+        elFunny.style.color = 'red';
+    }
+    if (word === 'person') {
+        var elPriorities = document.querySelector('.person')
+        elPriorities.style.fontSize = '22' + 'px';
+        elPriorities.style.color = 'red';
+    }
+    if (word === 'baby') {
+        var elIronic = document.querySelector('.baby')
+        elIronic.style.fontSize = '22' + 'px';
+        elIronic.style.color = 'red';
+    }
     renderGallery()
 }
 
@@ -61,11 +94,9 @@ function drawText(line) {
 }
 
 function onAddLine() {
-
     if (gMeme.selectedLineIdx === 0 || gMeme.selectedLineIdx === 1)
         gMeme.selectedLineIdx++
         else gMeme.selectedLineIdx = 0;
-
 }
 
 function onClearLine() {
@@ -94,8 +125,9 @@ function onChangeFillColor(color) {
     renderCanvas()
 }
 
-function onChangeFont(font) {
+function onSetFont(font) {
     gMeme.lines[gMeme.selectedLineIdx].font = font;
+    renderCanvas()
 }
 
 function increaseSize() {
@@ -127,42 +159,28 @@ function onDownloadMeme(downLodeMeme) {
     downloadMeme(downLodeMeme);
 }
 
-function onSearchByFilter() {
-
-    if (word === 'political') {
-        var elCat = document.querySelector('.political')
-        var size = parseInt(elCat.style.fontSize)
-        console.log(elCat.style.fontSize);
-        elCat.style.fontSize = (size++) + 'px';
-        console.log(parseInt(elCat.style.fontSize));
-        elCat.style.color = 'blue';
-    }
-    if (word === 'funny') {
-        var elFunny = document.querySelector('.funny')
-        elFunny.style.fontSize = '40' + 'px';
-        elFunny.style.color = 'blue';
-    }
-    if (word === 'priorities') {
-        var elFunny = document.querySelector('.priorities')
-        elFunny.style.fontSize = '40' + 'px';
-        elFunny.style.color = 'blue';
-    }
-    if (word === 'person') {
-        var elPriorities = document.querySelector('.person')
-        elPriorities.style.fontSize = '40' + 'px';
-        elPriorities.style.color = 'blue';
-    }
-    if (word === 'baby') {
-        var elIronic = document.querySelector('.baby')
-        elIronic.style.fontSize = '40' + 'px';
-        elIronic.style.color = 'blue';
-    }
+function clearCanvas() {
+    gMeme.lines[0].txt = ''
+    gMeme.lines[1].txt = ''
+    gMeme.lines[2].txt = ''
 }
 
 function addMouseListeners() {
     gCanvas.addEventListener('mousemove', onMove)
     gCanvas.addEventListener('mousedown', onDown)
     gCanvas.addEventListener('mouseup', onUp)
+}
+
+function getTxtBox() {
+    return gMeme.lines[gMeme.selectedLineIdx];
+}
+
+function getEvPos(ev) {
+    var pos = {
+        x: ev.offsetX,
+        y: ev.offsetY
+    }
+    return pos
 }
 
 function onDown(ev) {
@@ -213,4 +231,8 @@ function onSetLang(lang) {
     if (lang === 'he') document.body.classList.add('rtl');
     else document.body.classList.remove('rtl');
     doTrans();
+}
+
+function toggleMenu(el) {
+    console.log('hi');
 }

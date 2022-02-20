@@ -14,8 +14,7 @@ function openGallery() {
     document.querySelector('.main-gallery').classList.remove('hide');
     document.querySelector('.meme-editor').classList.add('hide');
     document.querySelector('.btn-share').classList.add('hide');
-
-
+    // init()
 }
 
 function btnImg(id) {
@@ -24,10 +23,4 @@ function btnImg(id) {
     renderMeme(id);
     document.querySelector('.main-gallery').classList.add('hide');
     document.querySelector('.meme-editor').classList.remove('hide');
-}
-
-function clearCanvas() {
-    gMeme.lines[0].txt = ''
-    gMeme.lines[1].txt = ''
-    gMeme.lines[2].txt = ''
 }

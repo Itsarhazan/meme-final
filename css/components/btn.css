@@ -61,6 +61,7 @@ select {
     background-color: rgb(231, 147, 231);
     height: 25px;
     font-weight: bold;
+    margin: 10px;
 }
 
 .ariel {
@@ -79,6 +80,7 @@ select {
     font-family: itali;
 }
 
+.all,
 .political,
 .funny,
 .priorities,
@@ -87,4 +89,10 @@ select {
     display: inline;
     margin: 10px;
     cursor: pointer;
+}
+
+.btn-menu {
+    height: 30px;
+    right: 0;
+    position: fixed;
 }

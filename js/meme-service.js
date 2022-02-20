@@ -2,27 +2,27 @@
 
 
 var gFilterBy = ''
-var gImgs = [
-    { id: 1, url: "./img/imgs/1.jpg", keywords: ['political', 'funny', 'person'] },
-    { id: 2, url: "./img/imgs/2.jpg", keywords: ['animals'] },
-    { id: 3, url: "./img/imgs/3.jpg", keywords: ['animals', 'funny'] },
-    { id: 4, url: "./img/imgs/4.jpg", keywords: ['animals'] },
-    { id: 5, url: "./img/imgs/5.jpg", keywords: ['baby', 'funny'] },
-    { id: 6, url: "./img/imgs/6.jpg", keywords: ['person'] },
-    { id: 7, url: "./img/imgs/7.jpg", keywords: ['baby', 'funny'] },
-    { id: 8, url: "./img/imgs/8.jpg", keywords: ['person', 'funny'] },
-    { id: 9, url: "./img/imgs/9.jpg", keywords: ['baby', 'funny'] },
-    { id: 10, url: "./img/imgs/10.jpg", keywords: ['funny', 'person', 'political'] },
-    { id: 11, url: "./img/imgs/11.jpg", keywords: ['person', 'funny', 'priorities'] },
-    { id: 12, url: "./img/imgs/12.jpg", keywords: ['priorities', 'person'] },
-    { id: 13, url: "./img/imgs/13.jpg", keywords: ['priorities', 'person'] },
-    { id: 14, url: "./img/imgs/14.jpg", keywords: ['priorities', 'person'] },
-    { id: 15, url: "./img/imgs/15.jpg", keywords: ['priorities', 'person'] },
-    { id: 16, url: "./img/imgs/16.jpg", keywords: ['person', 'funny'] },
-    { id: 17, url: "./img/imgs/17.jpg", keywords: ['person', 'funny', 'political'] },
-    { id: 18, url: "./img/imgs/18.jpg", keywords: ['priorities', 'funny'] },
-];
 
+var gImgs = [
+    { id: 1, url: "./img/imgs/1.jpg", keywords: ['all', 'political', 'funny', 'person'] },
+    { id: 2, url: "./img/imgs/2.jpg", keywords: ['all', 'animals'] },
+    { id: 3, url: "./img/imgs/3.jpg", keywords: ['all', 'animals', 'funny'] },
+    { id: 4, url: "./img/imgs/4.jpg", keywords: ['all', 'animals'] },
+    { id: 5, url: "./img/imgs/5.jpg", keywords: ['all', 'baby', 'funny'] },
+    { id: 6, url: "./img/imgs/6.jpg", keywords: ['all', 'person'] },
+    { id: 7, url: "./img/imgs/7.jpg", keywords: ['all', 'baby', 'funny'] },
+    { id: 8, url: "./img/imgs/8.jpg", keywords: ['all', 'person', 'funny'] },
+    { id: 9, url: "./img/imgs/9.jpg", keywords: ['all', 'baby', 'funny'] },
+    { id: 10, url: "./img/imgs/10.jpg", keywords: ['all', 'funny', 'person', 'political'] },
+    { id: 11, url: "./img/imgs/11.jpg", keywords: ['all', 'person', 'funny', 'priorities'] },
+    { id: 12, url: "./img/imgs/12.jpg", keywords: ['all', 'priorities', 'person'] },
+    { id: 13, url: "./img/imgs/13.jpg", keywords: ['all', 'priorities', 'person'] },
+    { id: 14, url: "./img/imgs/14.jpg", keywords: ['all', 'priorities', 'person'] },
+    { id: 15, url: "./img/imgs/15.jpg", keywords: ['all', 'priorities', 'person'] },
+    { id: 16, url: "./img/imgs/16.jpg", keywords: ['all', 'person', 'funny'] },
+    { id: 17, url: "./img/imgs/17.jpg", keywords: ['all', 'person', 'funny', 'political'] },
+    { id: 18, url: "./img/imgs/18.jpg", keywords: ['all', 'priorities', 'funny'] },
+];
 
 var gMeme = {
     selectedImgId: 0,
@@ -60,19 +60,12 @@ var gMeme = {
     ]
 }
 
-
-
 function setFilterBy(txt) {
     gFilterBy = txt
 }
 
 function setLineTxt(memeTxt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = memeTxt;
-}
-
-
-function getTxtBox() {
-    return gMeme.lines[gMeme.selectedLineIdx];
 }
 
 function isTxtClicked(txtPos) {
@@ -90,9 +83,7 @@ function isTxtClicked(txtPos) {
 
     })
     return res;
-
 }
-
 
 function getMeme() {
     return gMeme;
@@ -103,14 +94,6 @@ function getImgs() {
     return gImgs.filter(img => {
         return img.keywords.includes(gFilterBy)
     })
-}
-
-function getEvPos(ev) {
-    var pos = {
-        x: ev.offsetX,
-        y: ev.offsetY
-    }
-    return pos
 }
 
 function setBoxDrag(isDrag) {

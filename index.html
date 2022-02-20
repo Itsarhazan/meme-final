@@ -11,6 +11,7 @@
 
 <body onload="init()">
     <h1>Image Gallery</h1>
+    <button class="btn-menu" onclick="toggleMenu(this)">☰</button>
     <div class="btn-lang">
         <select onchange="onSetLang(this.value)">
             <option value="en">English</option>
@@ -24,9 +25,9 @@
             </div>
             <nav class="main-nav">
                 <ul class="main-nav-container clean-list flex ">
-                    <li><a data-trans="gallery" onclick="openGallery()" href="#">Gallery</a></li>
-                    <li><a data-trans="memes" onclick="btnMemes()" href="#">Memes</a></li>
-                    <li><a data-trans="about" href="#">About</a></li>
+                    <li data-trans="gallery" onclick="openGallery()">Gallery</li>
+                    <li data-trans="memes" onclick="btnMemes()">Memes</li>
+                    <li data-trans="about">About</li>
                 </ul>
             </nav>
         </div>
@@ -36,11 +37,12 @@
         <section class="search-input">
             <input class="txt-gallery" type="text" data-trans="search" placeholder="SEARCH" oninput="onSearchByFilter(this.value)">
             <div class="words-search">
-                <div class="political" data-trans="political" onclick="onSearchByFilter()"> political</div>
-                <div class="funny" data-trans="funny" onclick="onSearchByFilter()"> funny</div>
-                <div class="priorities" data-trans="priorities" onclick="onSearchByFilter()"> priorities</div>
-                <div class="person" data-trans="person" onclick="onSearchByFilter()"> person</div>
-                <div class="baby" data-trans="baby" onclick="onSearchByFilter()"> baby</div>
+                <div class="all" data-trans="political" onclick="onSearchByFilter('all')"> all</div>
+                <div class="political" data-trans="political" onclick="onSearchByFilter('political')"> political</div>
+                <div class="funny" data-trans="funny" onclick="onSearchByFilter('funny')"> funny</div>
+                <div class="priorities" data-trans="priorities" onclick="onSearchByFilter('priorities')"> priorities</div>
+                <div class="person" data-trans="person" onclick="onSearchByFilter('person')"> person</div>
+                <div class="baby" data-trans="baby" onclick="onSearchByFilter('baby')"> baby</div>
             </div>
         </section>
         <div class="meme-gallery grid"></div>
@@ -66,19 +68,26 @@
 
             </div>
             <div class="area4">
-                <input type="color" oninput="onChangeFillColor(this.value)"><img class="btn-edit" src="./img/icons/paint-board-and-brush.png" alt="">
-                <input type="color" oninput="onChangeColor(this.value)"> <img class="btn-edit" src="./img/icons/text stroke.png" alt="">
-                <select onchange="onChangeFont(this.value)">
-                    <option value="">Ariel</option>
-                    <option value="">Lato</option>
-                    <option value="">Prompt</option>
-                    <option value="">Italic</option>
-                </select>
+                <input type="color" oninput="onChangeFillColor(this.value)">
+                <img class="btn-edit" src="./img/icons/paint-board-and-brush.png" alt="">
+                <input type="color" oninput="onChangeColor(this.value)">
+                <img class="btn-edit" src="./img/icons/text stroke.png" alt="">
+                <select name="font" onchange="onSetFont(this.value)">
+                    <option value="Impact">Impact</option>
+                    <option value="sans-serif">sans-serif</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Cochin">Cochin</option>
+             </select>
             </div>
             <div class="area5 flex">
-                <button class="download-btn"><a data-trans="upload" href="#" onclick="uploadImg(this)">Upload</a></button>
+                <button class="download-btn">
+                    <a data-trans="upload" href="#" onclick="uploadImg(this)">Upload</a>
+                </button>
                 <button class="download-btn btn-share hide" data-trans="share"></button>
-                <button class="download-btn"><a href="#" data-trans="download" onclick="onDownloadMeme(this)">Download</a></button>
+                <button class="download-btn">
+                    <a href="#" data-trans="download" onclick="onDownloadMeme(this)">Download</a>
+                </button>
             </div>
         </div>
     </div>

@@ -25,9 +25,9 @@ const gTrans = {
         en: `SEARCH`,
         he: 'חיפוש'
     },
-    cat: {
-        en: `cat`,
-        he: 'חתול'
+    political: {
+        en: `political`,
+        he: 'פוליטיקה'
     },
     funny: {
         en: `funny`,
@@ -37,9 +37,13 @@ const gTrans = {
         en: `priorities`,
         he: 'סדר עדיפויות'
     },
-    ironic: {
-        en: `ironic`,
-        he: 'אירוני'
+    person: {
+        en: `person`,
+        he: 'אישיות'
+    },
+    baby: {
+        en: `baby`,
+        he: 'תינוק'
     },
     download: {
         en: `Download`,

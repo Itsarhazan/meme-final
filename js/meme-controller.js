@@ -73,27 +73,15 @@ function onClearLine() {
     renderCanvas()
 }
 
-function onSwitchLine(pos) {
-    pos = gMeme.selectedLineIdx
-    if (pos === 0) {
-
-        gMeme.lines[1].txt = gMeme.lines[0].txt;
-        gMeme.lines[0].txt = '';
-        gMeme.selectedLineIdx = 1;
+function onSwitchLine() {
+    if (gMeme.lines[0].location.y === 350) {
+        gMeme.lines[0].location.y = 50;
+        gMeme.lines[1].location.y = 350;
+    } else {
+        gMeme.lines[0].location.y = 350;
+        gMeme.lines[1].location.y = 50;
     }
-    if (pos === 1) {
-
-        gMeme.lines[2].txt = gMeme.lines[1].txt;
-        gMeme.lines[1].txt = '';
-        gMeme.selectedLineIdx = 2;
-    }
-    if (pos === 2) {
-        gMeme.lines[0].txt = gMeme.lines[2].txt;
-        gMeme.lines[2].txt = '';
-        gMeme.selectedLineIdx = 0;
-
-    }
-    renderCanvas();
+    renderCanvas()
 }
 
 function onChangeColor(color) {
@@ -139,10 +127,10 @@ function onDownloadMeme(downLodeMeme) {
     downloadMeme(downLodeMeme);
 }
 
-function onFilter(word) {
+function onSearchByFilter() {
 
-    if (word === 'cat') {
-        var elCat = document.querySelector('.cat')
+    if (word === 'political') {
+        var elCat = document.querySelector('.political')
         var size = parseInt(elCat.style.fontSize)
         console.log(elCat.style.fontSize);
         elCat.style.fontSize = (size++) + 'px';
@@ -155,12 +143,17 @@ function onFilter(word) {
         elFunny.style.color = 'blue';
     }
     if (word === 'priorities') {
-        var elPriorities = document.querySelector('.priorities')
+        var elFunny = document.querySelector('.priorities')
+        elFunny.style.fontSize = '40' + 'px';
+        elFunny.style.color = 'blue';
+    }
+    if (word === 'person') {
+        var elPriorities = document.querySelector('.person')
         elPriorities.style.fontSize = '40' + 'px';
         elPriorities.style.color = 'blue';
     }
-    if (word === 'ironic') {
-        var elIronic = document.querySelector('.ironic')
+    if (word === 'baby') {
+        var elIronic = document.querySelector('.baby')
         elIronic.style.fontSize = '40' + 'px';
         elIronic.style.color = 'blue';
     }

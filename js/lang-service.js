@@ -25,6 +25,10 @@ const gTrans = {
         en: `SEARCH`,
         he: 'חיפוש'
     },
+    all: {
+        en: `all`,
+        he: 'הכל'
+    },
     political: {
         en: `political`,
         he: 'פוליטיקה'

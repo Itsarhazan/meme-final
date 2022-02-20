@@ -1,4 +1,4 @@
-@media (max-width: 800px) {
+@media (max-width:800px) {
     .meme-editor {
         flex-direction: column;
     }
@@ -7,7 +7,7 @@
     }
 }
 
-@media (max-width:500px) {
+@media (max-width:300px) {
     .btns-edit {
         justify-content: center;
         gap: 10px;
@@ -15,5 +15,22 @@
     .main-header ul {
         position: fixed;
         flex-direction: column;
+    }
+    .words-search {
+        display: flex;
+    }
+}
+
+@media (max-width:200px) {
+    .main-header li {
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+    }
+    .gallery {
+        z-index: 10;
+    }
+    .main-layout {
+        max-width: 100%
     }
 }

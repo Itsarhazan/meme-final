@@ -5,11 +5,11 @@
 .btn-edit,
 .btn-clear {
     margin: 10px;
-    height: 35px;
-    padding: 2px;
+    height: 40px;
+    padding: 6px;
     background-color: rgb(243, 70, 70);
     border-radius: 20%;
-    width: 40px;
+    width: 45px;
     cursor: pointer;
     /* display: flex;
     flex-wrap: wrap; */
@@ -59,25 +59,14 @@
 
 select {
     background-color: rgb(231, 147, 231);
-    height: 25px;
+    height: 30px;
     font-weight: bold;
-    margin: 10px;
+    margin-top: 30px;
+    margin-left: 30px;
 }
 
-.ariel {
-    font-family: Arial;
-}
-
-.lato {
-    font-family: lato;
-}
-
-.prompt {
-    font-family: prompt;
-}
-
-.itali {
-    font-family: itali;
+option {
+    font-weight: bold;
 }
 
 .all,

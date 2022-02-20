@@ -78,3 +78,13 @@ select {
 .itali {
     font-family: itali;
 }
+
+.political,
+.funny,
+.priorities,
+.person,
+.baby {
+    display: inline;
+    margin: 10px;
+    cursor: pointer;
+}

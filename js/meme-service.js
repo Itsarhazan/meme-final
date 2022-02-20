@@ -1,27 +1,28 @@
 'use strict';
 
 
-var gImgs = [
-    { id: 1, url: "./img/imgs/1.jpg", keywords: ['baby', 'funny'] },
-    { id: 2, url: "./img/imgs/2.jpg", keywords: ['person', 'unlucky', 'ironic'] },
-    { id: 3, url: "./img/imgs/3.jpg", keywords: ['priorities', 'funny'] },
-    { id: 4, url: "./img/imgs/4.jpg", keywords: ['priorities', 'funny'] },
-    { id: 5, url: "./img/imgs/5.jpg", keywords: ['priorities', 'cat', 'funny'] },
-    { id: 6, url: "./img/imgs/6.jpg", keywords: ['priorities', 'cat', 'funny'] },
-    { id: 7, url: "./img/imgs/7.jpg", keywords: ['priorities', 'cat', 'funny'] },
-    { id: 8, url: "./img/imgs/8.jpg", keywords: ['priorities', 'cat', 'funny'] },
-    { id: 9, url: "./img/imgs/9.jpg", keywords: ['priorities', 'cat', 'funny'] },
-    { id: 10, url: "./img/imgs/10.jpg", keywords: ['priorities', 'cat', 'funny'] },
-    { id: 11, url: "./img/imgs/11.jpg", keywords: ['priorities', 'cat', 'funny'] },
-    { id: 12, url: "./img/imgs/12.jpg", keywords: ['priorities', 'cat', 'funny'] },
-    { id: 13, url: "./img/imgs/13.jpg", keywords: ['priorities', 'cat', 'funny'] },
-    { id: 14, url: "./img/imgs/14.jpg", keywords: ['priorities', 'cat', 'funny'] },
-    { id: 15, url: "./img/imgs/15.jpg", keywords: ['priorities', 'cat', 'funny'] },
-    { id: 16, url: "./img/imgs/16.jpg", keywords: ['priorities', 'cat', 'funny'] },
-    { id: 17, url: "./img/imgs/17.jpg", keywords: ['priorities', 'cat', 'funny'] },
-    { id: 18, url: "./img/imgs/18.jpg", keywords: ['priorities', 'cat', 'funny'] },
-];
 var gFilterBy = ''
+var gImgs = [
+    { id: 1, url: "./img/imgs/1.jpg", keywords: ['political', 'funny', 'person'] },
+    { id: 2, url: "./img/imgs/2.jpg", keywords: ['animals'] },
+    { id: 3, url: "./img/imgs/3.jpg", keywords: ['animals', 'funny'] },
+    { id: 4, url: "./img/imgs/4.jpg", keywords: ['animals'] },
+    { id: 5, url: "./img/imgs/5.jpg", keywords: ['baby', 'funny'] },
+    { id: 6, url: "./img/imgs/6.jpg", keywords: ['person'] },
+    { id: 7, url: "./img/imgs/7.jpg", keywords: ['baby', 'funny'] },
+    { id: 8, url: "./img/imgs/8.jpg", keywords: ['person', 'funny'] },
+    { id: 9, url: "./img/imgs/9.jpg", keywords: ['baby', 'funny'] },
+    { id: 10, url: "./img/imgs/10.jpg", keywords: ['funny', 'person', 'political'] },
+    { id: 11, url: "./img/imgs/11.jpg", keywords: ['person', 'funny', 'priorities'] },
+    { id: 12, url: "./img/imgs/12.jpg", keywords: ['priorities', 'person'] },
+    { id: 13, url: "./img/imgs/13.jpg", keywords: ['priorities', 'person'] },
+    { id: 14, url: "./img/imgs/14.jpg", keywords: ['priorities', 'person'] },
+    { id: 15, url: "./img/imgs/15.jpg", keywords: ['priorities', 'person'] },
+    { id: 16, url: "./img/imgs/16.jpg", keywords: ['person', 'funny'] },
+    { id: 17, url: "./img/imgs/17.jpg", keywords: ['person', 'funny', 'political'] },
+    { id: 18, url: "./img/imgs/18.jpg", keywords: ['priorities', 'funny'] },
+];
+
 
 var gMeme = {
     selectedImgId: 0,

@@ -34,17 +34,9 @@
     }
     
     .words-search {
-        font-size: 30px;
+        font-size: 20px;
         display: inline;
         margin-left: 100px;
         font-weight: bold;
         font-style: oblique;
-    }
-    
-    .cat,
-    .funny,
-    .priorities,
-    .ironic {
-        display: inline;
-        margin: 10px;
     }

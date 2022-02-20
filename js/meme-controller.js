@@ -8,18 +8,22 @@ var gElImgs = document.querySelector('.meme-gallery')
 var gTxt;
 var gStartPos;
 
+
 function init() {
     gCanvas = document.getElementById('my-canvas');
     gCtx = gCanvas.getContext('2d');
     renderGallery();
-
-
     addMouseListeners();
 }
 
 function renderMeme(id) {
     gMeme.selectedImgId = id;
     renderCanvas()
+}
+
+function onSearchByFilter(txt) {
+    setFilterBy(txt)
+    renderGallery()
 }
 
 function renderCanvas(id) {
@@ -40,14 +44,7 @@ function btnImg(id) {
     gMeme.selectedImgId = id;
     document.querySelector('.main-gallery').classList.add('hide');
     document.querySelector('.meme-editor').classList.remove('hide');
-
 }
-
-function onFilter(txt) {
-    setFilterBy(txt)
-    renderGallery()
-}
-
 
 function onAddTxt(txt) {
     setLineTxt(txt);
@@ -138,12 +135,18 @@ function alignToRight() {
     renderCanvas()
 }
 
+function onDownloadMeme(downLodeMeme) {
+    downloadMeme(downLodeMeme);
+}
 
-function wordsSearch(word) {
+function onFilter(word) {
 
     if (word === 'cat') {
         var elCat = document.querySelector('.cat')
-        elCat.style.fontSize = '40' + 'px';
+        var size = parseInt(elCat.style.fontSize)
+        console.log(elCat.style.fontSize);
+        elCat.style.fontSize = (size++) + 'px';
+        console.log(parseInt(elCat.style.fontSize));
         elCat.style.color = 'blue';
     }
     if (word === 'funny') {
@@ -163,34 +166,31 @@ function wordsSearch(word) {
     }
 }
 
-
 function addMouseListeners() {
     gCanvas.addEventListener('mousemove', onMove)
     gCanvas.addEventListener('mousedown', onDown)
     gCanvas.addEventListener('mouseup', onUp)
 }
 
-
 function onDown(ev) {
     const pos = getEvPos(ev);
     console.log('onDown()');
 
-    if (!isBoxClicked(pos)) return;
+    if (!isTxtClicked(pos)) return;
     setBoxDrag(true);
     gStartPos = pos;
     document.body.style.cursor = 'grabbing';
-
+    renderCanvas();
 }
-
 
 function onMove(ev) {
     console.log('onMove()');
     const txt = getTxtBox();
     if (txt.isDrag) {
         const pos = getEvPos(ev)
-        const dx = poss.x - gStartPos.x
-        const dy = po.y - gStartPos.y
-        moveBox(dx, dy);
+        const dx = pos.x - gStartPos.x
+        const dy = pos.y - gStartPos.y
+        moveTxtBox(dx, dy);
         gStartPos = pos;
         renderCanvas()
     }
@@ -202,14 +202,6 @@ function onUp() {
     setBoxDrag(false)
     document.body.style.cursor = 'grab'
 
-}
-
-function getEvPos(ev) {
-    var pos = {
-        x: ev.offsetX,
-        y: ev.offsetY
-    }
-    return pos
 }
 
 function doTrans() {

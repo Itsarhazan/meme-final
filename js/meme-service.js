@@ -119,7 +119,7 @@ function clearLine() {
 
 
 function downloadMeme(elLink) {
-    const data = gCanvas.toDataURL('image/jpeg');
+    const data = gCanvas.toDataURL("image/jpeg");
     elLink.href = data;
     elLink.download = 'memes';
 }
